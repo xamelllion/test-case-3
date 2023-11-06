@@ -7,7 +7,7 @@ const fetchRoomList = (setData, get_list) => {
   }
   console.log(get_string, get_list);
   // get_list = [];
-  fetch(`http://127.0.0.1:8765/rooms/${get_string}`, {
+  fetch(`http://104.193.254.90:8765/rooms/${get_string}`, {
     method: "GET",
     mode: "cors",
     headers: {

@@ -1,5 +1,5 @@
 const jwtAuth = async (state) => {
-  await fetch("http://127.0.0.1:8765/api/token/", {
+  await fetch("http://104.193.254.90:8765/api/token/", {
     method: "POST",
     mode: "cors",
     headers: {

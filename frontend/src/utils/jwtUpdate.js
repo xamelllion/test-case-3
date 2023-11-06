@@ -3,7 +3,7 @@ const jwtUpdate = () => {
     refresh: localStorage.getItem('refresh')
   };
 
-  fetch('http://127.0.0.1:8765/api/token/', {
+  fetch('http://104.193.254.90:8765/api/token/', {
       method: "POST",
       mode: "cors",
       headers: {

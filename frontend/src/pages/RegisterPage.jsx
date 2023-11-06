@@ -22,7 +22,7 @@ const RegisterPage = () => {
     e.preventDefault();
     console.log(state);
 
-    fetch("http://127.0.0.1:8765/register/", {
+    fetch("http://104.193.254.90:8765/register/", {
       method: "POST",
       mode: "cors",
       headers: {
