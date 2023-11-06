@@ -1,0 +1,86 @@
+.Room-Element {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 15px;
+    margin: 10px 30px;
+    border: 1px solid #fafafa;
+    border-radius: 7px;
+
+    text-align: center;
+    color: #fafafa;
+}
+.filters_element {
+    padding: 15px;
+    margin: 10px 30px;
+    border: 1px solid #fafafa;
+    border-radius: 7px;
+
+    /* text-align: center; */
+    color: #fafafa;
+
+    display: flex;
+    justify-content: space-between;
+}
+.sort_option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    padding: 5px 0;
+    color: black;
+    font-size: 12px;
+}
+.sort_option p {
+    color: #fafafa;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.filter_option input {
+    max-width: 100px;
+}
+.sel {
+    min-width: 150px;
+}
+.date_picker {
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 5px;
+    max-width: 130px;
+
+}
+.filter_date {
+    display: flex;
+}
+.filter_date_option {
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+}
+
+.to_book, .booked, .booked_by_user {
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+    min-width: 120px;
+}
+.to_book {
+    background-color: #149ECA;
+    color: #fafafa;
+}
+.booked {
+    background-color: #F70000;
+    color: #fafafa;
+}
+.booked_by_user {
+    background-color: #2E6542;
+    color: #fafafa;
+}
+.to_book:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #0086b3;
+}
