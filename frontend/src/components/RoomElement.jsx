@@ -20,7 +20,7 @@ const RoomElement = (props) => {
     body.booked_by = decoded.user_id;
 
 
-    fetch(`http://104.193.254.90:8765/rooms/${body.id}/`, {
+    fetch(`http://127.0.0.1:8765/rooms/${body.id}/`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -47,7 +47,7 @@ const RoomElement = (props) => {
     body.is_booked = false;
     e.preventDefault();
 
-    fetch(`http://104.193.254.90:8765/rooms/${body.id}/`, {
+    fetch(`http://127.0.0.1:8765/rooms/${body.id}/`, {
       method: "PUT",
       mode: "cors",
       headers: {
