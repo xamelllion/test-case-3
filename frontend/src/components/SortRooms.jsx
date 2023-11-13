@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Select from "react-select";
 import fetchRoomList from "../utils/fetchRoomList";
 import DateBlock from "./DateBlock";
+import dateFormat from "dateformat";
+import { DateTimeContext } from "../utils/context";
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -13,12 +15,21 @@ const SortRooms = (props) => {
   const [priceOption, setPriceOption] = useState(null);
   const [countOption, setCountOption] = useState(null);
 
+
+  let [startDate, setStartDate] = useState(null);
+  let [endDate, setEndDate] = useState(null);
+
+  const handleStartDate = (value) => {setStartDate(value);}
+  const handleEndDate = (value) => {setEndDate(value);}
+
+  let context_data = useContext(DateTimeContext);
+  
   useEffect(() => {
     if (priceOption !== null) {
       setCountOption(null);
       let get_list = JSON.parse(localStorage.getItem('get_list'));
-      get_list.price_sort = `price_option=${priceOption.value}`;
-      get_list.num_sort = ``;
+      get_list.price_option = priceOption.value;
+      delete get_list.count_option;
       localStorage.setItem('get_list', JSON.stringify(get_list));
       fetchRoomList(props.setData, get_list);
     }
@@ -28,12 +39,34 @@ const SortRooms = (props) => {
     if (countOption !== null) {
       setPriceOption(null);
       let get_list = JSON.parse(localStorage.getItem('get_list'));
-      get_list.num_sort = `count_option=${countOption.value}`;
-      get_list.price_sort = ``;
+      get_list.count_option = countOption.value;
+      delete get_list.price_option;
       localStorage.setItem('get_list', JSON.stringify(get_list));
       fetchRoomList(props.setData, get_list);
     }
   }, [countOption]);
+
+  useEffect(() => {
+    if (startDate !== null && endDate !== null) {
+      if (startDate > endDate) {
+        alert('Заехать надо раньше чем выехать!');
+        // setStartDate(null);
+        // setEndDate(null);
+      }
+      else {
+        let st = dateFormat(startDate, 'yyyy-mm-dd');
+        let nd = dateFormat(endDate, 'yyyy-mm-dd');
+        let get_list = JSON.parse(localStorage.getItem('get_list'));
+        // get_list.check_in_date__gte = st;
+        // get_list.check_in_date__lte = nd;
+
+        get_list.check_in_date__lte = nd;
+        get_list.check_out_date__gte = st;
+        localStorage.setItem('get_list', JSON.stringify(get_list));
+        fetchRoomList(props.setData, get_list);
+      }
+    }
+  }, [startDate, endDate, props.setData]);
   
   return (
     <div className="">
@@ -58,10 +91,15 @@ const SortRooms = (props) => {
           className="sel"
         />
       </div>
-      {/* <div className="sort_option">
+      <div className="sort_option">
         <p>Выберите даты:</p>
-        <DateBlock />
-      </div> */}
+        <DateBlock
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={handleStartDate}
+          setEndDate={handleEndDate}
+        />
+      </div>
     </div>
   );
 };

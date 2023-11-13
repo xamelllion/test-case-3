@@ -1,10 +1,20 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from hotel.models import Room
+from hotel.models import Room, RoomBooks
 
 
 class RoomSerializer(serializers.ModelSerializer):
+
+    is_booked = serializers.SerializerMethodField()
+
+    def get_is_booked(self, obj):
+        user =  self.context['request'].user
+        if len(RoomBooks.objects.filter(user_id=user, room_id=obj)) != 0:
+            return True
+        else:
+            return False
+        
     class Meta:
         model = Room
         fields = '__all__'

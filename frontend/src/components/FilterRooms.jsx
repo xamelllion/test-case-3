@@ -8,10 +8,12 @@ const FilterRooms = (props) => {
   let [num1, setNum1] = useState(0);
   let [num2, setNum2] = useState(10);
 
+  
   useEffect(() => {
     if (price1 !== 0 || price2 !== 100000) {
       let get_list = JSON.parse(localStorage.getItem('get_list'));
-      get_list.price_filter = `filter_price=${price1}-${price2}`;
+      get_list.daily_cost__gte = price1;
+      get_list.daily_cost__lte = price2;
       localStorage.setItem('get_list', JSON.stringify(get_list));
       fetchRoomList(props.setData, get_list);
     }
@@ -20,7 +22,8 @@ const FilterRooms = (props) => {
   useEffect(() => {
     if (num1 !== 0 || num2 !== 10) {
       let get_list = JSON.parse(localStorage.getItem('get_list'));
-      get_list.num_filter = `filter_room=${num1}-${num2}`;
+      get_list.num_of_seats__gte = num1;
+      get_list.num_of_seats__lte = num2;
       localStorage.setItem('get_list', JSON.stringify(get_list));
       fetchRoomList(props.setData, get_list);
     }

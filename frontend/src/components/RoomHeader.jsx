@@ -7,6 +7,7 @@ const RoomHeader = (props) => {
       <div className="room_name">Номер комнаты</div>
       <div className="daily_cost">Стоимость (день)</div>
       <div className="num_of_seats">Количество мест</div>
+      {/* <div className="">Даты бронирования</div> */}
       <div className="is_booked">Доступность</div>
     </div>
   );

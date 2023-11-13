@@ -5,7 +5,7 @@ import ManageBlock from "../components/ManageBlock";
 import RoomList from "../components/RoomList";
 import RoomElement from "../components/RoomElement";
 import fetchRoomList from "../utils/fetchRoomList";
-
+import { DateTimeContext } from "../utils/context";
 
 const MainPage = () => {
 
@@ -18,13 +18,15 @@ const MainPage = () => {
     <RoomElement data={room} key={room.id} />
   ));
 
-
+  let [date, setDate] = useState(null);
 
   return (
     <div className="App">
-      <RoomHeader />
-      <ManageBlock setData={setData} />
-      <RoomList room_list={room_list} />
+      <DateTimeContext.Provider value={{date: date, setDate: setDate}}>
+        <ManageBlock setData={setData} />
+        <RoomHeader />
+        <RoomList room_list={room_list} />
+      </DateTimeContext.Provider>
     </div>
   );
 };
